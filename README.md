@@ -42,10 +42,13 @@ the DRC problems found and fixed, and the delay derivations, is in [`docs/1bit-a
 
 ## Circuits, layout and simulation
 
-**Full adder** (the SUM path is the critical path):
+**Full adder** in NAND form (the SUM path is the critical path):
 
 <p><img src="docs/images/full-adder-nand-schematic.png" alt="Full adder as nine NAND gates" width="560"></p>
-<p><img src="docs/images/full-adder-transistor-circuit.png" alt="Full adder built from transistors" width="860"></p>
+**CMOS NAND2**, the primitive every gate in the design is built from (MP1 and MP2 in parallel pull the output
+up, MN1 and MN2 in series pull it down):
+
+<p><img src="docs/images/cmos-nand2-schematic.png" alt="CMOS NAND2 transistor schematic" width="380"></p>
 
 **L-Edit layouts** (Metal 1 blue, poly red, active green, contacts black). Left: the gate cells. Right: the 4:1 mux
 made of three 2:1 mux stages.
