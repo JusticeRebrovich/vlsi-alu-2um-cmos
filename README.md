@@ -40,12 +40,35 @@ the hand calculation) and sets the critical path. XOR is the least affected beca
 wider (6 µm vs 2 µm ideal), which partly offsets the extra load. The full write-up, with the design rules used,
 the DRC problems found and fixed, and the delay derivations, is in [`docs/1bit-alu-report.pdf`](docs/1bit-alu-report.pdf).
 
+## Circuits, layout and simulation
+
+**Full adder** (the SUM path is the critical path):
+
+<p><img src="docs/images/full-adder-nand-schematic.png" alt="Full adder as nine NAND gates" width="560"></p>
+<p><img src="docs/images/full-adder-transistor-circuit.png" alt="Full adder built from transistors" width="860"></p>
+
+**L-Edit layouts** (Metal 1 blue, poly red, active green, contacts black). Left: the gate cells. Right: the 4:1 mux
+made of three 2:1 mux stages.
+
+<p>
+  <img src="docs/images/layout-gate-cells.png" alt="L-Edit layouts of the gate cells" width="270">
+  <img src="docs/images/layout-4to1-mux.png" alt="L-Edit layout of the 4:1 mux" width="560">
+</p>
+
+**Layout view used for parasitic extraction** of the 4:1 mux:
+
+<img src="docs/images/layout-4to1-mux-extraction.png" alt="4:1 mux layout, extraction view" width="560">
+
+**LTSpice simulation**, all four operations over the 640 ns window with staggered input pulses:
+
+<img src="docs/images/ltspice-waveforms.png" alt="LTSpice waveforms of the 1-bit ALU" width="900">
+
 ## Repository contents
 
 ```
 layout/   L-Edit (Tanner, .tdb) layouts: 2:1 MUX, 4:1 MUX (three cascaded 2:1 stages), full adder
 spice/    LTSpice schematic with the hierarchical netlist, and the netlist extracted from the 4:1 MUX layout
-docs/     Report (PDF), course presentation, transistor-level diagrams (SVG)
+docs/     Report (PDF), course presentation, and the figures shown above (docs/images)
 ```
 
 Opening the layouts needs L-Edit (the student version 7.x was used); the `.tdb` files are Tanner database files.
